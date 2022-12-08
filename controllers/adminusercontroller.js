@@ -3,7 +3,7 @@ const adminUser = require("../model/adminuser");
 const adminUserPage = (req, res) => {
  
     adminUser.displayUser().then((User_Details) => {
-      res.render("admin/adminUserPage", {
+      res.render("admin/adminuserpage", {
         admin: true,
         title: "USER CONTROL PAGE",
         User_Details,
