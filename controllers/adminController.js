@@ -1,8 +1,8 @@
 
 const adminHelper = require("../model/admin-helper");
 const admincategory = require("../model/admin-category");
-const userModel = require('../Model/adminuser')
-const orderModel = require('../Model/adminordermodel')
+const userModel = require('../model/adminuser')
+const orderModel = require('../model/adminordermodel')
 
 exports.adminHome = async (req, res) => {
     adminHelper.showUser(req.body).then((userDetails) => {

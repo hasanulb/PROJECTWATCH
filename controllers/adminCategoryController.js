@@ -1,5 +1,5 @@
 const { response } = require('express')
-const admincategory =require('../Model/admin-category')
+const admincategory =require('../model/admin-category')
 const userCartMgmt = require('../model/cartmodel')
 
 exports.admincategory = async (req, res) => {

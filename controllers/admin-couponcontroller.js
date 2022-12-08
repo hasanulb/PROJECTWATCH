@@ -1,4 +1,4 @@
-const couponModel = require('../Model/admin-couponmodel')
+const couponModel = require('../model/admin-couponmodel')
 
 exports.showCouponPage = (req,res)=>{
   couponModel.displayCoupon().then((availableCoupons)=>{

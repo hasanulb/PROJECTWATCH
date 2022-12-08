@@ -1,4 +1,4 @@
-const adminUser = require("../Model/adminuser");
+const adminUser = require("../model/adminuser");
 
 const adminUserPage = (req, res) => {
  

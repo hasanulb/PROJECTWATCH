@@ -1,8 +1,8 @@
-const placeOrderModel = require('../Model/placeorder')
-const checkOut = require('../Model/checkout')
-const cartModel = require('../Model/cartmodel')
-const wishListModel = require('../Model/wishlist')
-const category = require('../Model/admin-category')
+const placeOrderModel = require('../model/placeorder')
+const checkOut = require('../model/checkout')
+const cartModel = require('../model/cartmodel')
+const wishListModel = require('../model/wishlist')
+const category = require('../model/admin-category')
 const e = require('express')
 
 exports.placeOrder = async (req, res) => {

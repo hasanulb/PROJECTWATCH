@@ -1,5 +1,5 @@
-const couponModel = require("../Model/userCouponModel");
-const cartCheckOutModel = require("../Model/checkout");
+const couponModel = require("../model/userCouponModel");
+const cartCheckOutModel = require("../model/checkout");
 
 exports.applyCoupon = async (req,res) => {
   console.log("coupon bohhhdy =>", req.query);

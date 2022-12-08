@@ -1,5 +1,5 @@
 const { response } = require('express')
-const brand = require('../Model/brand')
+const brand = require('../model/brand')
 
 
 exports.brand = async (req, res) => {

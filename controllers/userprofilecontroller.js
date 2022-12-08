@@ -1,7 +1,7 @@
-const userProfileModel = require('../Model/profile')
-const cartModel = require('../Model/cartmodel')
-const wishListModel = require('../Model/wishlist')
-const category = require('../Model/admin-category')
+const userProfileModel = require('../model/profile')
+const cartModel = require('../model/cartmodel')
+const wishListModel = require('../model/wishlist')
+const category = require('../model/admin-category')
 const { resolveContent } = require('nodemailer/lib/shared')
 
 

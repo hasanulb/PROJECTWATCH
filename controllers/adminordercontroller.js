@@ -1,5 +1,5 @@
-const adminOrderModel = require('../Model/adminordermodel')
-const adminCategory = require('../Model/admin-category')
+const adminOrderModel = require('../model/adminordermodel')
+const adminCategory = require('../model/admin-category')
 const userProfileModel =require("../model/profile")
 
 exports.showOrderPage = (req,res)=>{

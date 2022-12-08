@@ -1,5 +1,5 @@
 const { response } = require('express')
-const adminproduct = require('../Model/admin-product')
+const adminproduct = require('../model/admin-product')
 const admincategory = require('../model/admin-category')
 const adminbrand = require('../model/brand')
 const cart = require("../model/cartmodel")

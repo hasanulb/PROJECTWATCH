@@ -1,5 +1,5 @@
-const userModel = require('../Model/')
-const orderModel = require('../Model/adminOrderModel')
+const userModel = require('../model/')
+const orderModel = require('../model/adminOrderModel')
 
 const chartStatusCount = async(req,res)=>{
   let user = await userModel.displayUser()
