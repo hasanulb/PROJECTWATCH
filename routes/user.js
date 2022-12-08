@@ -7,7 +7,7 @@ const wishlistcontroller = require("../controllers/wishlistcontroller");
 const checkoutcontroller = require("../controllers/checkoutcontroller");
 const placeordercontroller = require("../controllers/placeordercontroller");
 const profilecontroller = require("../controllers/userprofilecontroller");
-const couponController = require('../Controllers/usercouponcontroller');
+const couponController = require('../controllers/usercouponcontroller');
 const categorycontroller = require("../controllers/adminCategoryController");
 const userSessionCheck = require("../middleware/sessionmiddleware");
 
