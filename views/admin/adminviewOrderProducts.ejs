@@ -1,0 +1,102 @@
+<section class="d-grid gap-2 d-md-flex justify-content-md-end" style="padding-top: 120px;">
+  <div class="container">
+    <table id="Category" class="table  table-hover">
+      <thead>
+        <tr class="text-danger">
+          <th scope="col">SNO</th>
+          <th scope="col">PICTURE</th>
+          <th scope="col">PRODUCT NAME</th>
+          <th scope="col">PRICE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% let i=1; for(values of products) { %>
+          <tr>
+            <th scope="row">
+              <%= i++ %>
+            </th>
+            <td> <img src="/images/<%= values.orderProducts[0].image%>" style="width: 4em; height: 4em;" alt=""></td>
+            <td>
+              <%= values.orderProducts[0].productdata.productname %>
+            </td>
+            <td>
+              <%= values.orderProducts[0].productdata.sellingprice %>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <% } %>
+      </tbody>
+    </table>
+  </div>
+</section>
+<div class="container mt-2">
+  <div class="container">
+    <h5><B><I class="text-success">ORDER DETAILS</I></B></h5>
+    <div>
+      <ul>
+        <li class="mb-3">
+          <h5>DATE</h5> <span>
+            <%= orders[0].date.toLocaleDateString() %>
+          </span>
+        </li>
+        <li class="mb-3">
+          <h5>STREET ADDRESS</h5>
+          <%= orders[0].deliveryDetails.streetaddress %><span></span>
+        </li>
+        <li class="mb-3">
+          <h5>APPARTMENT</h5>
+          <%= orders[0].deliveryDetails.appartment %><span></span>
+        </li>
+        <li class="mb-3">
+          <h5>CITY</h5>
+          <%= orders[0].deliveryDetails.city %><span></span>
+        </li>
+        <li class="mb-3">
+          <h5>PINCODE</h5>
+          <%= orders[0].deliveryDetails.pinCode %><span></span>
+        </li>
+        <li class="mb-3">
+          <h5>STATUS</h5> <span>
+            <%= orders[0].status %>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="container mt-5 w-25 d-flex ">
+  <div>
+    <select class="form-select" aria-label="Default select example" id="newOrderStatus">
+      <option value="placed">PLACED</option>
+      <option value="shipped">SHIPPED</option>
+      <option value="delivered">DELIVERED</option>
+    </select>
+  </div>
+</div>
+<div class="container mt-2 w-25 d-flex ">
+  <div>
+    <button class="btn btn-success" onclick="orderStatus('<%= orders[0]._id %>')">UPDATE STATUS</button>
+  </div>
+</div>
+
+<script>
+  function orderStatus(orderId) {
+    let status = document.getElementById('newOrderStatus').value
+    $.ajax({
+      url: '/admin/updateOrderStatus',
+      data: {
+        status: status,
+        orderId: orderId
+      },
+      method: 'post',
+      success: (response) => {
+          location.href = '/admin/adminOrderPage'
+
+      }
+    })
+  }
+</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="script.js"></script>

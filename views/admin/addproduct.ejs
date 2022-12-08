@@ -1,0 +1,67 @@
+<%-include('../partials/admin-header') %>
+
+
+    <div style="padding-top: 150px; margin-left: 50px;">
+        <form class="row g-3" action="/admin/addproduct" method="post" enctype="multipart/form-data">
+            <div class="col-md-6">
+                <label for="inputEmail4" class="form-label">Product Name</label>
+                <input type="text" name="productname" class="form-control" id="product">
+            </div>
+            <div class="col-md-4">
+                <label for="inputState" class="form-label">Category</label>
+                <select id="inputState" name="productcategory" class="form-select">
+                    <option selected>Choose...</option>
+                    <% for(var i=0;i<category.length;i++){ %>
+                    <option><%= category[i].category%></option>
+                    <% } %>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="inputState" class="form-label">Brand</label>
+                <select id="inputState" name="productbrand" class="form-select">
+                    <option selected>Choose...</option>
+                    <% for(var i=0;i<brand.length;i++){ %>
+                    <option><%= brand[i].brand%></option>
+                    <% } %>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="inputCity" class="form-label">Quantity</label>
+                <input type="text" name="productquantity" class="form-control" id="inputCity">
+            </div>
+
+            <div class="col-md-6">
+                <label for="inputCity" class="form-label">Actual price</label>
+                <input type="text" name="actualprice" class="form-control" id="inputCity">
+            </div>
+
+            <div class="col-md-4">
+                <label for="inputCity" class="form-label">Selling price</label>
+                <input type="text" name="sellingprice" class="form-control" id="inputCity">
+            </div>
+            <div class="col-md-4">
+                <label for="inputCity" class="form-label">Description</label>
+                <input type="text" name="description" class="form-control" id="inputCity">
+            </div>
+            <div class="col-md-4">
+                <label for="inputCity" class="form-label">image</label>
+                <input type="file" name="productimage" class="form-control" id="inputCity">
+                <input type="hidden" name="state" value="available" id="state">
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".sidebarBtn");
+        sidebarBtn.onclick = function () {
+            sidebar.classList.toggle("active");
+            if (sidebar.classList.contains("active")) {
+                sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+            } else
+                sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+        }
+    </script>

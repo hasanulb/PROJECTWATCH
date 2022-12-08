@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Vegefoods - Free Bootstrap 4 Template by Colorlib</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
+		rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="../user/css/open-iconic-bootstrap.min.css">
+	<link rel="stylesheet" href="../user/css/animate.css">
+
+	<link rel="stylesheet" href="../user/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="../user/css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="../user/css/magnific-popup.css">
+
+	<link rel="stylesheet" href="../user/css/aos.css">
+
+	<link rel="stylesheet" href="../user/css/ionicons.min.css">
+
+	<link rel="stylesheet" href="../user/css/bootstrap-datepicker.css">
+	<link rel="stylesheet" href="../user/css/jquery.timepicker.css">
+
+
+	<link rel="stylesheet" href="../user/css/flaticon.css">
+	<link rel="stylesheet" href="../user/css/icomoon.css">
+	<link rel="stylesheet" href="../user/css/style.css">
+</head>
+
+<body class="goto-here">
+
+	<div class="container">
+		<div class="row justify-content-center mb-1 pb-3">
+			<div class="col-md-12 heading-section text-center ftco-animate">
+				<h2 class="mb-4">Cart</h2>
+			</div>
+		</div>
+	</div>
+	<section class="ftco-section ftco-cart">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 ftco-animate">
+					<div class="cart-list">
+						<table class="table">
+							<thead class="thead-primary">
+								<tr class="text-center">
+									<th>&nbsp;</th>
+									<th>Image</th>
+									<th>Product name</th>
+									<th>Price</th>
+									<th>Quantity</th>
+								</tr>
+							</thead>
+							<tbody>
+								<% if(products.length>0){%>
+									
+								<% for(var i=0;i<products.length;i++) { %>
+									<tr id="row<%=products[i]._id %>" class="text-center">
+										<td class="product-remove" id="<%=products[i]._id %>"
+											onclick="removecart('<%=products[i]._id %>','<%= products[i]._id %>')">
+											<a><input type="hidden" value="<%=products[i]._id %>"
+													id="cartdelete"><span class="ion-ios-close"></span></a>
+										</td>
+
+										<td class="image-prod">
+											<div class="img"
+												style="background-image:url('<%= products[i].productdata.image %>');">
+											</div>
+										</td>
+
+										<td class="product-name">
+											<h3>
+												<%= products[i].productdata.productname %>
+											</h3>
+										</td>
+										<td class="price">INR <%= products[i].productdata.sellingprice %>
+										</td>
+										<td class="quantity">
+											<div class="input-group mb-3">
+												<span class="input-group-btn mr-2">
+													<button type="button" class="quantity-left-minus btn"
+														onclick="changeQuantity('<%= products[i]._id%>','<%= products[i].item %>',-1,'<%= products[i].productdata.sellingprice %>','<%= total %>')"
+														data-type="minus" data-field="">
+														<i class="ion-ios-remove"></i>
+													</button>
+												</span>
+												<input type="text" id="inputtag<%= products[i]._id%>"
+													name="quantity" class="quantity form-control input-number"
+													value="<%= products[i].quantity %>" min="1" max="100">
+												<span class="input-group-btn ml-2">
+													<button type="button" class="quantity-right-plus btn"
+														onclick="changeQuantity('<%= products[i]._id%>','<%= products[i].item %>',1,'<%= products[i].productdata.sellingprice %>','<%= total %>')"
+														data-type="plus" data-field="">
+														<i class="ion-ios-add"></i>
+													</button>
+												</span>
+											</div>
+
+										</td>
+									</tr>
+									<% } %>
+									<% }  else { %>
+									<tr style="border-bottom:15px solid #fff;">
+										<h1>Cart is Empty</h1>
+									</tr>
+									<% } %>
+										<!-- END TR-->
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="row justify-content-end">
+				<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
+					<div class="cart-total mb-3">
+						<h3>Coupon Code</h3>
+						<p>Enter your coupon code if you have one</p>
+						<form action="#" class="info">
+							<div class="form-group">
+								<input type="text" class="form-control text-left px-3" placeholder="" name="couponCode"
+									id="couponCode">
+								<span id="couponMessage"></span>
+							</div>
+						</form>
+					</div>
+					<p><a onclick="applyCoupon() " class="btn btn-primary py-3 px-4">Apply Coupon</a></p>
+				</div>
+
+				<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
+					<div class="cart-total mb-3">
+						<h3>Cart Total</h3>
+						<p class="d-flex">
+							<span>Subtotal</span>
+							<span> INR <big id="Subtotal">
+									<%= total %>
+								</big> </span></span>
+						</p>
+						<p class="d-flex">
+							<span>Delivery</span>
+							<span>5%</span>
+						</p>
+						<div class="d-flex justify-content-between mb-3 pt-1">
+							<h6 class="font-weight-medium">Discount</h6>
+							<h6 class="font-weight-medium" id="discountId">0
+							</h6>
+						</div>
+						<hr>
+						<p class="d-flex total-price">
+							<span>Total</span>
+
+							<span>INR<span id="finaltotal">
+									<%= total %>
+								</span></span>
+						</p>
+					</div>
+					<p><a onclick="checkout('<%= total %>')" class="btn btn-primary py-3 px-4">Proceed to
+							Checkout</a></p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<%-include('../partials/user-footer') %>
+
+
+
+	<!-- loader -->
+	<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+			<circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+			<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+				stroke="#F96D00" />
+		</svg></div>
+
+
+	<script src="../user/js/jquery.min.js"></script>
+	<script src="../user/js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="../user/js/popper.min.js"></script>
+	<script src="../user/js/bootstrap.min.js"></script>
+	<script src="../user/js/jquery.easing.1.3.js"></script>
+	<script src="../user/js/jquery.waypoints.min.js"></script>
+	<script src="../user/js/jquery.stellar.min.js"></script>
+	<script src="../user/js/owl.carousel.min.js"></script>
+	<script src="../user/js/jquery.magnific-popup.min.js"></script>
+	<script src="../user/js/aos.js"></script>
+	<script src="../user/js/jquery.animateNumber.min.js"></script>
+	<script src="../user/js/bootstrap-datepicker.js"></script>
+	<script src="../user/js/scrollax.min.js"></script>
+	<script
+		src="../user/https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+	<script src="../user/js/google-map.js"></script>
+	<script src="../user/js/main.js"></script>
+
+	<script>
+		function changeQuantity(cartid, productid, count, sellingprice, total, finalTotal) {
+			console.log("eee",cartid);
+			let quantity = parseInt(document.getElementById('inputtag' + productid).value)
+			count = count
+			$.ajax({
+				url: '/changeProductQuantity',
+				data: {
+					cart: cartid,
+					product: productid,
+					count: count,
+					quantity: quantity
+
+				},
+				method: 'post',
+				success: (response) => {
+					if (response.removeProduct) {
+						location.reload()
+					}
+					else {
+						document.getElementById('inputtag' + productid).value = quantity + count
+						let finalTotal = document.getElementById('final_total')
+						let Subtotal = document.getElementById('Subtotal')
+						if (count == 1) {
+							finalTotal.innerHTML = parseInt(finalTotal.innerHTML) + parseInt(sellingprice);
+							Subtotal.innerHTML = parseInt(Subtotal.innerHTML) + parseInt(sellingprice);
+
+						} else {
+							finalTotal.innerHTML = parseInt(finalTotal.innerHTML) - parseInt(sellingprice);
+							Subtotal.innerHTML = parseInt(Subtotal.innerHTML) - parseInt(sellingprice);
+
+
+						}
+
+					}
+
+				}
+			})
+		}
+
+		function checkout() {
+			let couponCode = document.getElementById('couponCode').value.toUpperCase()
+			let finalprice = document.getElementById('finaltotal').innerHTML
+
+			$.ajax({
+				url: '/checkoutprice?finalprice=' + finalprice + '&couponcode=' + couponCode,
+				method: 'post',
+				success: (response) => {
+					console.log(finalprice);
+				}
+			}).then((final) => {
+				location.href = "/checkout?finalTotal=" + final
+			})
+			
+
+
+		}
+
+		function applyCoupon() {
+			let couponCode = document.getElementById('couponCode').value.toUpperCase()
+			let message = document.getElementById('couponMessage');
+			let discountlDisplay = document.getElementById('discountId')
+			let finalTotal = document.getElementById('finaltotal')
+			console.log("qwerty", couponCode);
+
+			fetch('/cart/applyCoupon?code=' + couponCode, {
+				method: 'get',
+			}).then(res => res.json()).then(data => {
+
+				if (data.couponStatus == true) {
+					message.innerHTML == ''
+					discountlDisplay.innerHTML = data.discount
+					finalTotal.innerHTML = data.discountedTotal
+				}
+				else {
+					message.innerHTML = 'COUPON NOT ACCEPTABLE'
+					discountlDisplay.innerHTML = data.discount
+					finalTotal.innerHTML = data.discountedTotal
+
+				}
+			})
+		}
+
+		function removecart(productid, cartid) {
+			const row = document.getElementById("row" + productid)
+
+
+			$.ajax({
+				url: '/removecart?productid=' + productid + '&cartid=' + cartid,
+				method: 'get',
+				success: (response) => {
+					row.remove();
+					console.log(row);
+				}
+			})
+		}
+	</script>
+
+
+</body>
+
+</html>

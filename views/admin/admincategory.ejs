@@ -1,0 +1,138 @@
+<%-include('../partials/admin-header') %>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="padding-top: 120px;">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-outline-primary" style="margin-right: 15px;" data-bs-toggle="modal"
+            data-bs-target="#addcategory">
+            Add Category
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="addcategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form action="/admin/addcategory" method="post">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Category</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Category Name</label>
+                                <input type="hidden" value="available" name="state" id="state">
+                                <input type="text" class="form-control" name="category" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Add</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="padding-top: 30px;">
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">SNO</th>
+                    <th scope="col">CATEGORY NAME</th>
+                    <th scope="col">EDIT CATEGORY</th>
+                    <th scope="col">DELETE CATEGORY</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <% for(var i=0;i<category.length;i++){ %>
+                    <tr>
+                        <th scope="row">
+                            <%= i+1 %>
+                        </th>
+                        <td>
+                            <%= category[i].category %>
+                        </td>
+                        <td> <a href="" class="btn btn-warning">EDIT</a></td>
+                        <%if(category[i].state=='available' ) {%>
+                            <td><a id="categoryId" onclick="deletecategory('<%= category[i]._id %>')"
+                                    class="btn btn-danger">DELETE</a></td>
+                            <% } else {%>
+                                <td><a id="retriveId" onclick="retrivecategory('<%= category[i]._id %>')"
+                                        class="btn btn-success">RETRIVE</a></td>
+                                <% } %>
+                    </tr>
+                    <% } %>
+
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".sidebarBtn");
+        sidebarBtn.onclick = function () {
+            sidebar.classList.toggle("active");
+            if (sidebar.classList.contains("active")) {
+                sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+            } else
+                sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+        }
+
+        function deletecategory(categoryId) {
+            swal({
+                title: "DELETE",
+                text: "DO YOU WANT TO DELETE THIS CATEGORY",
+                icon: "warning",
+                buttons: ["CANCEL", "OK"],
+            }).then(val => {
+                if (val) {
+
+                    fetch('/admin/deletecategory?id=' + categoryId,
+                        {
+                            method: 'get'
+
+                        }).then(res => res.json).then(
+                            swal({
+                                title: "SUCCESS",
+                                text: "CATEGORY SUCCESSFULLY DELETED",
+                                icon: "success",
+                                button: "OK"
+
+                            }).then(val => {
+                                location.href = '/admin/admincategory'
+                            })
+                        )
+                }
+            })
+        }
+
+        function retrivecategory(retriveId){
+            swal({
+                title: "RETRIVE",
+                text: "DO YOU WANT TO RETRIVE THIS CATEGORY",
+                icon: "warning",
+                buttons: ["CANCEL", "OK"],
+            }).then(val => {
+                if (val) {
+
+                    fetch('/admin/retrivecategory?id=' + retriveId,
+                        {
+                            method: 'get'
+
+                        }).then(res => res.json).then(
+                            swal({
+                                title: "SUCCESS",
+                                text: "CATEGORY SUCCESSFULLY RETRIVED",
+                                icon: "success",
+                                button: "OK"
+
+                            }).then(val => {
+                                location.href = '/admin/admincategory'
+                            })
+                        )
+                }
+            })
+        }
+    </script>

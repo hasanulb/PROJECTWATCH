@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Vegefoods - Free Bootstrap 4 Template by Colorlib</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../user/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="../user/css/animate.css">
+
+    <link rel="stylesheet" href="../user/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../user/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../user/css/magnific-popup.css">
+
+    <link rel="stylesheet" href="../user/css/aos.css">
+
+    <link rel="stylesheet" href="../user/css/ionicons.min.css">
+
+    <link rel="stylesheet" href="../user/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="../user/css/jquery.timepicker.css">
+
+
+    <link rel="stylesheet" href="../user/css/flaticon.css">
+    <link rel="stylesheet" href="../user/css/icomoon.css">
+    <link rel="stylesheet" href="../user/css/style.css">
+</head>
+
+<body class="goto-here">
+    <div class="home-slider owl-carousel" style="margin-top: 10px;">
+        <div class="slider-item" style="background-image: url(../user/images/David-Beckham.jpg);">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
+
+                    <div class="col-md-12 ftco-animate text-center">
+                        <h1 class="mb-0 bread">Products</h1>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-10 mb-5 text-center">
+                    <ul class="product-category">
+                        <% for(var i=0;i<category.length;i++) {%>
+                        <li><a href="viewcategory?id=<%= category[i]._id %>" class="active"><%= category[i].category %></a></li>
+                        <% } %>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <% for(var i=0;i<product.length;i++) { %>
+                <div class="col-md-6 col-lg-3 ftco-animate  d-flex justify-content-center align-items-center">
+                    <div class="product" style="width:50 px;">
+                       
+                        <a href="/singleproduct?id=<%= product[i]._id %>" class="img-prod">
+                            <div style="background-image:url('/images/<%= product[i].product.image %>') ; width: 250px; height: 300px; background-size: contain; background-repeat: no-repeat;">
+                            </div>
+                            <!-- <span class="status">30%</span> -->
+                            <div class="overlay"></div>
+                        </a>
+                        <div class="text py-3 pb-4 px-3 text-center">
+                            <h3><a href="#"><%= product[i].product.productname %></a></h3>
+                            <div class="d-flex">
+                                <div class="pricing">
+                                    <p class="price"><span class="mr-2 price-dc">INR <%= product[i].product.actualprice %></span><span
+                                            class="price-sale">INR <%= product[i].product.productdata.sellingprice %></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+                <% } %>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col text-center">
+                    <div class="block-27">
+                        <ul>
+                            <li><a href="#">&lt;</a></li>
+                            <li class="active"><span>1</span></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">&gt;</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <%-include('../partials/user-footer') %>
+
+    <!-- loader -->
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+                stroke="#F96D00" />
+        </svg></div>
+
+
+    <script src="../user/js/jquery.min.js"></script>
+    <script src="../user/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="../user/js/popper.min.js"></script>
+    <script src="../user/js/bootstrap.min.js"></script>
+    <script src="../user/js/jquery.easing.1.3.js"></script>
+    <script src="../user/js/jquery.waypoints.min.js"></script>
+    <script src="../user/js/jquery.stellar.min.js"></script>
+    <script src="../user/js/owl.carousel.min.js"></script>
+    <script src="../user/js/jquery.magnific-popup.min.js"></script>
+    <script src="../user/js/aos.js"></script>
+    <script src="../user/js/jquery.animateNumber.min.js"></script>
+    <script src="../user/js/bootstrap-datepicker.js"></script>
+    <script src="../user/js/scrollax.min.js"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="../user/js/google-map.js"></script>
+    <script src="../user/js/main.js"></script>
+
+</body>
+
+</html>

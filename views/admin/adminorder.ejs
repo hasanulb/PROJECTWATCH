@@ -1,0 +1,47 @@
+<section class="d-grid gap-2 d-md-flex justify-content-md-end" style="padding-top: 120px;">
+    <div class="container">
+      <table id="Category" class="table  table-hover">
+        <thead >
+          <tr class="text-danger">
+            <th scope="col">SNO</th>
+            <th scope="col">ORDER ID</th>
+            <th scope="col">ORDER DATE</th>
+            <th scope="col">CUSTOMER ADDRESS</th>
+            <th scope="col">ORDER STATUS</th>
+            <th scope="col">PAYMENT METHOD</th>
+            <th scope="col">AMOUNT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var i=0;i< orderList.length;i++){ %>
+          <tr>
+            <th scope="row"><%= i+1 %></th>
+            <td><a href="/admin/adminviewOrderProducts?id=<%= orderList[i]._id %>"><%= orderList[i]._id %></a></td> 
+            <td><%= orderList[i].date.toLocaleDateString() %></td>
+            <td><%= orderList[i].deliveryDetails.streetaddress%></td>
+            <td><%= orderList[i].status %></td>
+            <td><%= orderList[i].paymentMethod %></td>
+            <td>₹ <%= orderList[i].deliveryDetails.totalAmout %></td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <button class="btn btn-primary ms-2" onclick="generatePDF()">Download to PDF</button>
+
+  <script>
+    function generatePDF() {
+        const element = document.getElementById('Category');
+        console.log("qqqqq",element);
+        var opt = {
+            margin: 1,
+            filename: 'orderReportPdf_example.pdf',
+            image: { type: 'png', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
+        };
+        // Choose the element that our invoice is rendered in.
+        html2pdf().set(opt).from(element).save();
+    }
+  </script>
