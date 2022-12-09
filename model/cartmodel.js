@@ -118,8 +118,9 @@ module.exports = {
         })
     },
     removecartProduct: (cart, product) => {
+        console.log("car ",cart," por",product);
         return new Promise((resolve, reject) => {
-            db.get().collection(collection.CART).deleteOne(
+            db.get().collection(collection.CART).updateOne(
                 { _id: ObjectID(cart) },
                 {
                     $pull: { products: { item: ObjectID(product) } }

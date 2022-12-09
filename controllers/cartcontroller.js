@@ -24,6 +24,7 @@ exports.showCartPage = async (req,res)=>{
          
       let userData = req.session.user
       let userDetails = req.session.user._id
+      console.log("2222",products);
       res.render('user/cart',{admin:false,user:true,category,userData,products,userDetails,cartcount,total,user})
     })
     
