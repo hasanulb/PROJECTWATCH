@@ -16,7 +16,7 @@
           <% for(var i=0;i< orderList.length;i++){ %>
           <tr>
             <th scope="row"><%= i+1 %></th>
-            <td><a href="/admin/adminviewOrderProducts?id=<%= orderList[i]._id %>"><%= orderList[i]._id %></a></td> 
+            <td><a href="/admin/adminvieworderproducts?id=<%= orderList[i]._id %>"><%= orderList[i]._id %></a></td> 
             <td><%= orderList[i].date.toLocaleDateString() %></td>
             <td><%= orderList[i].deliveryDetails.streetaddress%></td>
             <td><%= orderList[i].status %></td>

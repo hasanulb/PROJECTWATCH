@@ -40,7 +40,7 @@ router.get('/admincouponpage',adminSessionCheck.adminSessionChecker,adminCoupon.
 router.post('/addnewcoupon',adminSessionCheck.adminSessionChecker,adminCoupon.addCoupon);
 router.delete('/deletecoupon',adminSessionCheck.adminSessionChecker,adminCoupon.deleteCoupon);
 router.get('/adminorderlist',adminSessionCheck.adminSessionChecker,adminorders.showOrderPage);
-router.get('/adminviewOrderProducts',adminSessionCheck.adminSessionChecker,adminorders.viewOrderProducts)
+router.get('/adminvieworderproducts',adminSessionCheck.adminSessionChecker,adminorders.viewOrderProducts)
 router.get('/adminOrderPage',adminSessionCheck.adminSessionChecker,adminorders.showOrderPage)
 router.post('/updateOrderStatus',adminSessionCheck.adminSessionChecker,adminorders.updateOrderStatus)
 router.get('/chartContent',adminSessionCheck.adminSessionChecker,adminchart.chartStatusCount)
