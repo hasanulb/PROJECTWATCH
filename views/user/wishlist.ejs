@@ -52,6 +52,7 @@
 									<th>Image</th>
 									<th>Product name</th>
 									<th>Price</th>
+									<th>&nbsp;</th>
 									<!-- <th>Quantity</th>
 						        <th>Total</th> -->
 								</tr>
@@ -77,6 +78,7 @@
 
 										<td class="price">INR <%= products[i].productDetails.sellingprice %>
 										</td>
+      								  <td><a href="/singleproduct?id=<%=products[i].productDetails._id %>" class="btn btn-secondary btn-sm">BUY</a></td>
 
 									</tr>
 									<% } %>

@@ -21,7 +21,7 @@ module.exports = {
   },
   showidorder: (orderId) => {
     return new Promise((resolve, reject) => {
-      let orderList = db.get().collection(collection.ORDER).find({ _id: ObjectID(orderId) }).toArray()
+      let orderList = db.get().collection(collection.ORDER).find({ _id: ObjectID(orderId) }).sort({date:-1}).toArray()
       resolve(orderList)
     })
   },
