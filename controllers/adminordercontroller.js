@@ -15,7 +15,7 @@ exports.viewOrderProducts = async (req, res) => {
   let orderId = req.query.id
   let orders = await adminOrderModel.showidorder(orderId)
   let products = await userProfileModel.getOrderProductDetails(orderId)
-  res.render("admin/adminpage", { admin: true, title: "VIEW ORDER PRODUCTS", products, orders })
+  res.render("admin/adminvieworderproducts", { admin: true, title: "VIEW ORDER PRODUCTS", products, orders })
 };
 
 exports.updateOrderStatus = async (req, res) => {
