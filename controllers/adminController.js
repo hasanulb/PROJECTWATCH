@@ -36,7 +36,7 @@ exports.adminLogout = async (req, res) => {
         if (err) {
             res.send("Error")
         } else {
-            res.redirect('/adminlogin')
+            res.redirect('/login')
         }
     })
 }

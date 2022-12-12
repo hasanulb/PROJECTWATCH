@@ -2,9 +2,32 @@ const userProfileModel = require('../model/profile')
 const cartModel = require('../model/cartmodel')
 const wishListModel = require('../model/wishlist')
 const category = require('../model/admin-category')
+const address = require("../model/address")
 const { resolveContent } = require('nodemailer/lib/shared')
 
 
+
+exports.addressPage = async(req,res)=>{
+  let cartcount = null;
+  let user= req.session.user
+  if (req.session.user) {
+    cartcount = await cartModel.getCartCount(req.session.user._id);
+  }
+  res.render("user/addaddress", {
+    admin:false,
+    user:true,
+    cartcount,
+    user
+  });
+}
+
+exports.addAddress = (req,res)=>{
+  console.log("111",req.body);
+  let user = req.session.user._id
+  address.addAddress(req.body,user).then((response)=>{
+      res.redirect('/addressAddPage')
+  })
+}
 
 exports.viewOrders = async(req,res)=>{
 let orders = await userProfileModel.getUserOrders(req.session.user._id)

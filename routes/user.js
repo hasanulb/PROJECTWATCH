@@ -16,6 +16,8 @@ router.get("/home",userController.home);
 router.get("/login",userController.landingpage)
 router.get("/shop",userSessionCheck.userSessionChecker,userController.shop);
 router.get('/profile',userSessionCheck.userSessionChecker,profilecontroller.showUserProfile)
+router.get('/addressAddPage',userSessionCheck.userSessionChecker,profilecontroller.addressPage)
+router.post('/addAddress',userSessionCheck.userSessionChecker,profilecontroller.addAddress)
 router.get('/editProfile',userSessionCheck.userSessionChecker,profilecontroller.editProfile)
 router.post('/editeduserprofile',userSessionCheck.userSessionChecker,profilecontroller.editProfileDetails)
 router.get("/cart",userSessionCheck.userSessionChecker,cartController.showCartPage);

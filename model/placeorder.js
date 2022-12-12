@@ -33,6 +33,8 @@ module.exports = {
         status: status,
         date: new Date(),
       };
+
+      
       console.log("order object = > ", orderObj);
       db.get().collection(collection.ORDER).insertOne(orderObj).then((response) => {
       db.get().collection(collection.CART).deleteOne({ user: ObjectID(order.userId) })
@@ -40,6 +42,7 @@ module.exports = {
           resolve(response.insertedId);
         });
     });
+
   },
   getCartProductsList: (userId) => {
     return new Promise(async (resolve, reject) => {

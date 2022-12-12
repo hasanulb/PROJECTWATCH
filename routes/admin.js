@@ -78,5 +78,4 @@ router.get("/edit", async (req, res) => {
 
 
 router.get('/logout', adminController.adminLogout);
-
 module.exports = router;

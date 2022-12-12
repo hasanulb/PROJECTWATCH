@@ -3,7 +3,7 @@ const wishListModel = require("../model/wishlist");
 const checkOut = require("../model/checkout");
 const category = require("../model/admin-category");
 const couponModel = require("../model/usercouponmodel")
-
+const address = require("../model/address");
 
 exports.checkout = async (req, res) => {
   let price = req.query.finalTotal;
@@ -17,6 +17,8 @@ exports.checkout = async (req, res) => {
   let total = price;
   category.showcategory().then((category) => {
     let userData = req.session.user;
+    address.showAddress(req.session.user._id).then((addressList)=>{
+      let address = addressList ? addressList.address : "";
     res.render("user/checkout", {
       admin: false,
       user: true,
@@ -26,9 +28,12 @@ exports.checkout = async (req, res) => {
       products,
       total,
       wishListCount,
-      price
+      price,
+      addressList,
+      address
     });
   });
+})
 }
 
 exports.checkoutprice = (req,res) =>{

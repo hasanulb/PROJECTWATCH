@@ -6,7 +6,6 @@ const bcrypt = require('bcrypt')
 module.exports = {
 
   getUserOrders: (userId) => {
-    console.log("sdas", userId);
     return new Promise(async (resolve, reject) => {
       let orders = await db.get().collection(collection.ORDER).find({ userId: ObjectID(userId) }).sort({date:-1}).toArray()
       resolve(orders)
