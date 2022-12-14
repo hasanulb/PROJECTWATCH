@@ -9,7 +9,7 @@ const checkOut = require("../model/checkout");
 exports.showCartPage = async (req,res)=>{
     let products = await cartModel.getCartProducts(req.session.user._id)
     let cartcount = null 
-    let User= req.session.user
+    let user= req.session.user
     let wishListCount = null
     let total = 0
     if(products.length>0){
@@ -24,8 +24,7 @@ exports.showCartPage = async (req,res)=>{
          
       let userData = req.session.user
       let userDetails = req.session.user._id
-      console.log("2222",products);
-      res.render('user/cart',{admin:false,user:true,category,userData,products,userDetails,cartcount,total,User})
+      res.render('user/cart',{admin:false,user:true,category,userData,products,userDetails,cartcount,total,user})
     })
     
   }

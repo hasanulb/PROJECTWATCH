@@ -16,20 +16,19 @@ let mailTransporter = nodemailer.createTransport({
   const OTP = `${Math.floor(1000 + Math.random() * 9000)}`;
 
 exports.home = async (req, res) => { 
-    let User = req.session.user 
-    console.log("1111",User );
+    let user = req.session.user 
      let cartcount = null
      if(req.session.user){
         cartcount=await cartHelper.getCartCount(req.session.user._id)
      }  
   userHelper.viewproduct().then((product) => {
-    res.render("user/userpage", { admin:false, user:true , product,cartcount,User})
+    res.render("user/userpage", { admin:false, user:true , product,cartcount,user})
   });
 
 }
 
 exports.landingpage = async (req,res) => {
-        res.render('user/userlogin',{admin:false, user:false})
+        res.render('user/userlogin',{admin:false, user:false,})
     }
 
 exports.login = async (req, res) => {
@@ -45,17 +44,15 @@ exports.login = async (req, res) => {
 }
 
 exports.shop = async (req, res) => {
-    let User = req.session.user 
+    let user = req.session.user 
     let products = await cartHelper.getCartProducts(req.session.user._id)  
-
-     console.log("user in product page",User);
      let cartcount = null
      if(req.session.user){
         cartcount=await cartHelper.getCartCount(req.session.user._id)
      }  
         userHelper.viewproduct().then((product) => {
            categoryHelper.showcategory().then((category)=>{
-            res.render("user/shop", { admin: false, user: true , product,cartcount,User,category});
+            res.render("user/shop", { admin: false, user: true , product,cartcount,user,category});
            })      
         })
 }
@@ -65,7 +62,7 @@ exports.shop = async (req, res) => {
 
 
 exports.productinfo = async (req,res) => {
-    let User = req.session.user 
+    let user = req.session.user 
     // let product = await cartHelper.getCartProducts(req.session.user._id)  
     
      let cartcount = null
@@ -76,7 +73,7 @@ exports.productinfo = async (req,res) => {
    console.log(productId);
     userHelper.viewoneproduct(productId).then((product) =>{
       console.log("2222",product);
-    res.render("user/singleproduct", {admin: false, user: true , product,User,cartcount})
+    res.render("user/singleproduct", {admin: false, user: true , product,user,cartcount})
     });
 }
 

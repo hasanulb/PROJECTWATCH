@@ -13,7 +13,7 @@ exports.addToWishList = (req, res) => {
 exports.showWishListPage = async(req,res)=>{
     let products = await wishlist.getWishListProducts(req.session.user._id)
     let cartcount=null
-    let User= req.session.user
+    let user= req.session.user
     let wishListCount = null
     if(req.session.user)
     {
@@ -21,7 +21,7 @@ exports.showWishListPage = async(req,res)=>{
       cartcount = await cartmodel.getCartCount(req.session.user._id)
     }
     category.showcategory().then((category)=>{
-      res.render('user/wishlist',{admin:false,user:true,category,User,cartcount,wishListCount,products})
+      res.render('user/wishlist',{admin:false,user:true,category,user,cartcount,wishListCount,products})
     })
     
   }
