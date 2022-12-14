@@ -17,6 +17,7 @@ let mailTransporter = nodemailer.createTransport({
 
 exports.home = async (req, res) => { 
     let User = req.session.user 
+    console.log("1111",User );
      let cartcount = null
      if(req.session.user){
         cartcount=await cartHelper.getCartCount(req.session.user._id)
