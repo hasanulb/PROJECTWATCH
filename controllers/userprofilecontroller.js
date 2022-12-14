@@ -9,7 +9,7 @@ const { resolveContent } = require('nodemailer/lib/shared')
 
 exports.addressPage = async(req,res)=>{
   let cartcount = null;
-  let user= req.session.user
+  let User= req.session.user
   if (req.session.user) {
     cartcount = await cartModel.getCartCount(req.session.user._id);
   }
@@ -17,14 +17,14 @@ exports.addressPage = async(req,res)=>{
     admin:false,
     user:true,
     cartcount,
-    user
+    User
   });
 }
 
 exports.addAddress = (req,res)=>{
   console.log("111",req.body);
-  let user = req.session.user._id
-  address.addAddress(req.body,user).then((response)=>{
+  let User = req.session.user._id
+  address.addAddress(req.body,User).then((response)=>{
       res.redirect('/addressAddPage')
   })
 }
@@ -34,7 +34,7 @@ let orders = await userProfileModel.getUserOrders(req.session.user._id)
 console.log("scdscd",req.session.user._id);
 console.log('this is my orders',orders);
 let cartcount = null;
-let user= req.session.user
+let User= req.session.user
 let wishListCount = null
 if (req.session.user) {
   cartcount = await cartModel.getCartCount(req.session.user._id);
@@ -50,7 +50,7 @@ category.showcategory().then((category) => {
     category,
     wishListCount,
     orders,
-    user
+    User
   });
 });
 }
@@ -58,7 +58,7 @@ category.showcategory().then((category) => {
 exports.showUserProfile = async(req,res)=>{
   let orders = await userProfileModel.getUserOrders(req.session.user._id)
   let cartcount = null;
-  let user= req.session.user
+  let User= req.session.user
   let wishListCount = null
   if (req.session.user) {
     cartcount = await cartModel.getCartCount(req.session.user._id);
@@ -78,7 +78,7 @@ exports.showUserProfile = async(req,res)=>{
         wishListCount,
         orders,
         userDetails,
-        user
+        User
       });
     });
   };
