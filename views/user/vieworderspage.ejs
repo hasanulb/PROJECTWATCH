@@ -1,0 +1,60 @@
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
+		rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="../user/css/open-iconic-bootstrap.min.css">
+	<link rel="stylesheet" href="../user/css/animate.css">
+
+	<link rel="stylesheet" href="../user/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="../user/css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="../user/css/magnific-popup.css">
+
+	<link rel="stylesheet" href="../user/css/aos.css">
+
+	<link rel="stylesheet" href="../user/css/ionicons.min.css">
+
+	<link rel="stylesheet" href="../user/css/bootstrap-datepicker.css">
+	<link rel="stylesheet" href="../user/css/jquery.timepicker.css">
+
+
+	<link rel="stylesheet" href="../user/css/flaticon.css">
+	<link rel="stylesheet" href="../user/css/icomoon.css">
+	<link rel="stylesheet" href="../user/css/style.css">
+</head>
+
+<div class="container mt-3">
+  <table id="Category" class="table  table-hover">
+    <thead class="text-primary">
+      <tr>
+        <th scope="col">SNO</th>
+        <th scope="col">ORDER ID</th>
+        <th scope="col">ADDRESS</th>
+        <th scope="col">DATE</th>
+        <th scope="col">AMOUNT</th>
+        <th scope="col">PAYMENT</th>
+        <th scope="col">STATUS</th>
+        <th scope="col">VIEW PRODUCTS</th> 
+      </tr>
+    </thead>
+    <tbody>
+    <% for(var i=0;i<orders.length;i++){ %>
+      <tr>
+        <th scope="row"><%= i+1 %></th>
+        <td><%= orders[i]._id %></td>
+        <td><%= orders[i].deliveryDetails.streetaddress %></td>
+        <td><%= orders[i].date.toLocaleDateString() %></td>
+        <td><%= orders[i].deliveryDetails.totalAmout %></td>
+        <td><%= orders[i].paymentMethod %></td>
+        <td><%= orders[i].status %></td>
+        <td><a href="/viewOrderProducts?id=<%= orders[i]._id %>" class="btn btn-secondary btn-sm">VIEW PRODUCTS</a></td>
+      </tr>
+      <% }%>
+    </tbody>
+  </table>
+</div>

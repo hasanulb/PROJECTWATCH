@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Vegefoods - Free Bootstrap 4 Template by Colorlib</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
+		rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="../user/css/open-iconic-bootstrap.min.css">
+	<link rel="stylesheet" href="../user/css/animate.css">
+
+	<link rel="stylesheet" href="../user/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="../user/css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="../user/css/magnific-popup.css">
+
+	<link rel="stylesheet" href="../user/css/aos.css">
+
+	<link rel="stylesheet" href="../user/css/ionicons.min.css">
+
+	<link rel="stylesheet" href="../user/css/bootstrap-datepicker.css">
+	<link rel="stylesheet" href="../user/css/jquery.timepicker.css">
+
+
+	<link rel="stylesheet" href="../user/css/flaticon.css">
+	<link rel="stylesheet" href="../user/css/icomoon.css">
+	<link rel="stylesheet" href="../user/css/style.css">
+</head>
+
+<body class="goto-here">
+	<div class="container">
+		<div class="row justify-content-center mb-1 pb-3">
+			<div class="col-md-12 heading-section text-center ftco-animate">
+				<h2 class="mb-4">Wish List</h2>
+			</div>
+		</div>
+	</div>
+
+	<section class="ftco-section ftco-cart">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 ftco-animate">
+					<div class="cart-list">
+						<table class="table">
+							<thead class="thead-primary">
+								<tr class="text-center">
+									<th>&nbsp;</th>
+									<th>Image</th>
+									<th>Product name</th>
+									<th>Price</th>
+									<th>&nbsp;</th>
+									<!-- <th>Quantity</th>
+						        <th>Total</th> -->
+								</tr>
+							</thead>
+							<tbody>
+								<% for(var i=0;i<products.length;i++) { %>
+									<tr id="row<%=products[i].productDetails._id %>" class="text-center">
+										<td class="product-remove" id="<%=products[i].productDetails._id %>"
+											onclick="removewishlist('<%=products[i].productDetails._id %>','<%= products[i]._id %>')"><a><input type="hidden"
+													value="<%=products[i].productDetails._id %>" id="wishdelete"><span
+													class="ion-ios-close"></span></a></td>
+
+										<td class="image-prod">
+											<div class="img"
+												style="background-image:url('<%= products[i].productDetails.image%>');">
+											</div>
+										</td>
+
+										<td class="product-name">
+											<%= products[i].productDetails.productname %>	
+
+										</td>
+
+										<td class="price">INR <%= products[i].productDetails.sellingprice %>
+										</td>
+      								  <td><a href="/singleproduct?id=<%=products[i].productDetails._id %>" class="btn btn-secondary btn-sm">BUY</a></td>
+
+									</tr>
+									<% } %>
+										<!-- END TR-->
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			
+			<%-include('../partials/user-footer') %>
+
+			
+
+
+			<!-- loader -->
+			<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+					<circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+					<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+						stroke="#F96D00" />
+				</svg></div>
+
+			<script>
+				console.log('gdxgzdgdfzgzdfgzfz');
+
+				function removewishlist(productid,wishlistid) {
+					const row = document.getElementById("row"+productid)
+					
+
+					$.ajax({
+						url: '/removewishlist?productid=' + productid + '&wishlistid='+wishlistid,
+						method: 'get',
+						success: (response) => {
+							row.remove();
+							console.log(row);
+						}
+					})
+				}
+			</script>
+
+			<script src="../user/js/jquery.min.js"></script>
+			<script src="../user/js/jquery-migrate-3.0.1.min.js"></script>
+			<script src="../user/js/popper.min.js"></script>
+			<script src="../user/js/bootstrap.min.js"></script>
+			<script src="../user/js/jquery.easing.1.3.js"></script>
+			<script src="../user/js/jquery.waypoints.min.js"></script>
+			<script src="../user/js/jquery.stellar.min.js"></script>
+			<script src="../user/js/owl.carousel.min.js"></script>
+			<script src="../user/js/jquery.magnific-popup.min.js"></script>
+			<script src="../user/js/aos.js"></script>
+			<script src="../user/js/jquery.animateNumber.min.js"></script>
+			<script src="../user/js/bootstrap-datepicker.js"></script>
+			<script src="../user/js/scrollax.min.js"></script>
+			<script
+				src="../user/https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+			<script src="../user/js/google-map.js"></script>
+			<script src="../user/js/main.js"></script>
+
+
+
+</body>
+
+</html>

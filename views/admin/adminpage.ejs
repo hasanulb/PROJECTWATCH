@@ -1,0 +1,80 @@
+<%-include('../partials/admin-header') %>
+
+
+  <div class="home-content">
+    <div class="overview-boxes">
+      <div class="box">
+        <div class="right-side">
+          <a href="/admin/product" class="btn"> <div class="box-topic">PRODUCTS</div></a>
+        </div>
+      </div>
+      <div class="box">
+        <div class="right-side">
+          <a href="/admin/adminUserPage" class="btn"> <div class="box-topic">USERS</div></a>
+          <div class="indicator">
+          </div>
+        </div>
+      </div>
+      <div class="box">
+        <div class="right-side">
+          <a href="/admin/admincategory" class="btn"> <div class="box-topic">CATEGORY</div></a>
+          <div class="indicator">
+          </div>
+        </div>
+      </div>
+      <div class="box">
+        <div class="right-side">
+          <a href="/admin/adminorderlist" class="btn"> <div class="box-topic">ORDERS</div></a>
+          <div class="indicator">
+
+          </div>
+        </div>
+      </div>
+    </div>   
+    <div style="width:40%;margin: top 5%;;margin-left:30%">
+      <canvas style="width:100%;" id="myChart"></canvas>
+    </div>
+  </section>
+
+
+  <script>
+    const ctx = document.getElementById('myChart');
+
+window.addEventListener('load',()=>{
+  fetch('/admin/chartContent',{
+    method:'get'
+  }).then(res => res.json()).then(data=>{
+    new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: ['USER', 'PLACED ORDERS','DELIVERED ORDERS','SHIPPED ORDERS','TOTAL ORDERS'],
+        datasets: [{
+          label: '# of Votes',
+          data: [data.userlength, data.chartDetails.orderPlacedLength, data.chartDetails.deliveredOrderLength,data.chartDetails.shippedOrderLength,data.chartDetails.totalOrdersLength],
+          borderWidth:5
+        }]
+       },
+      options: {
+        responsive:true
+     }
+  });   
+  }).catch((err) => {
+            console.log(err.message);
+        })
+  })
+  </script>
+  <script>
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".sidebarBtn");
+    sidebarBtn.onclick = function () {
+      sidebar.classList.toggle("active");
+      if (sidebar.classList.contains("active")) {
+        sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+      } else
+        sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+    }
+  </script>
+
+  </body>
+
+  </html>

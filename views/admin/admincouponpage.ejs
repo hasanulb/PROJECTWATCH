@@ -1,0 +1,140 @@
+
+
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="padding-top: 120px;">
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-outline-primary" style="margin-right: 15px;" data-bs-toggle="modal"
+      data-bs-target="#addcategory">
+      Add Coupon
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="addcategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form action="/admin/addnewcoupon" method="post">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Add Brand</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="newCategoryName" class="text-primary">COUPON NAME : </label>
+                <input type="text" name="couponName" id="coupenName"><br>
+                <label for="newCategoryName" class="text-primary">COUPON CODE : </label>
+                <input type="text" name="couponCode" id="coupenName"><br>
+                <label for="newCategoryName" class="text-primary">DISCOUNT : </label>
+                <input type="text" name="discount" id="discount"><br>
+                <label for="newCategoryName" class="text-primary">START DATE : </label>
+                <input type="date" name="startDate" id="startDate"><br>
+                <label for="newCategoryName" class="text-primary">END DATE : </label>
+                <input type="date" name="endDate" id="endDate"><br>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="modal fade" id="editbrand" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form action="/admin/editbrand" method="post">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Brand</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Brand Name</label>
+              <input type="text" class="form-control" name="brand" id="exampleInputEmail1"
+                aria-describedby="emailHelp">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Edit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+  <div style="padding-top: 30px;">
+    <table class="table table-dark">
+      <thead>
+        <tr>
+            <th scope="col">SNO</th>
+            <th scope="col">COUPON NAME</th>
+            <th scope="col">COUPON CODE</th>
+            <th scope="col">START DATE</th>
+            <th scope="col">END DATE</th>
+            <th scope="col">DISCOUNT</th>
+            <th scope="col">DELETE COUPON</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(var i=0;i<availableCoupons.length;i++) {%>
+            <tr>
+              <th scope="row"><%= i+1 %></th>
+              <td><%= availableCoupons[i].couponName %></td>
+              <td><%= availableCoupons[i].couponCode %></td>
+              <td><%= availableCoupons[i].startDate %></td>
+              <td><%= availableCoupons[i].endDate %></td>
+              <td><%= availableCoupons[i].discount %></td>
+              <td><a  id="couponId" class="btn btn-danger" onclick="deleteCoupon('<%= availableCoupons[i]._id %>')">DELETE COUPON</a></td>
+            </tr>
+    <% } %>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".sidebarBtn");
+    sidebarBtn.onclick = function () {
+      sidebar.classList.toggle("active");
+      if (sidebar.classList.contains("active")) {
+        sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+      } else
+        sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+    }
+
+    function deleteCoupon(couponId){
+  swal({
+  title: "DELETE",
+  text: "DO YOU WANT TO DELETE THIS COUPON",
+  icon: "warning",
+  buttons: ["CANCEL","OK"],
+}).then(val=>{
+  if(val)
+  {
+    
+    fetch('/admin/deleteCoupon?id='+couponId,
+    {
+      method:'delete'
+
+    }).then(res=>res.json).then(
+      swal({
+        title: "SUCCESS",
+       text: "COUPON SUCCESSFULLY DELETED",
+       icon: "success",
+       button:"OK"
+       
+    }).then(val=>{
+      location.href = '/admin/adminCouponPage'
+    })
+    )
+  }
+})
+}
+
+  $(document).ready(function () {
+    $('#Category').DataTable();
+});
+  </script>

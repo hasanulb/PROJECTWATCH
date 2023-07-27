@@ -1,0 +1,65 @@
+<section style="padding-top: 120px;">
+  
+    <div class="container">
+      <table id="userPage" class="table table-secondary table-hover">
+        <thead>
+          <tr>
+            <th scope="col">S.NO</th>
+            <th scope="col">NAME</th>
+            <th scope="col">EMAIL</th>
+            <th scope="col">ACTION</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var i=0;i<User_Details.length;i++) { %>
+          <tr>
+            <th scope="row"><%= i+1 %></th>
+            <td><%= User_Details[i].username %></td>
+            <td><%= User_Details[i].Email %></td>
+            <td>
+              <%if(User_Details[i].state == 'active') {%>
+              <button onclick="userBlock('<%= User_Details[i]._id %>')" class="btn btn-danger">BLOCK</button>
+              <% } else {%>
+                <button onclick="userUnblock('<%= User_Details[i]._id %>')" class="btn btn-success">UNBLOCK</button>
+                <% } %>
+            </td>
+            
+
+
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <script>
+    function userBlock(userId)
+{
+ $.ajax({
+  url:'/admin/adminUserPage/block',
+  data:{
+    userId:userId
+  },
+  method:'post',
+  success: (response) => {
+          location.reload()
+  }
+ }) 
+}
+
+function userUnblock(userId)
+{
+ $.ajax({
+  url:'/admin/adminUserPage/unblock',
+  data:{
+    userId:userId
+  },
+  method:'post',
+  success: (response) => {
+          location.reload()
+  }
+ }) 
+}
+  </script>

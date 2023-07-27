@@ -1,0 +1,54 @@
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
+		rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="../user/css/open-iconic-bootstrap.min.css">
+	<link rel="stylesheet" href="../user/css/animate.css">
+
+	<link rel="stylesheet" href="../user/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="../user/css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="../user/css/magnific-popup.css">
+
+	<link rel="stylesheet" href="../user/css/aos.css">
+
+	<link rel="stylesheet" href="../user/css/ionicons.min.css">
+
+	<link rel="stylesheet" href="../user/css/bootstrap-datepicker.css">
+	<link rel="stylesheet" href="../user/css/jquery.timepicker.css">
+
+
+	<link rel="stylesheet" href="../user/css/flaticon.css">
+	<link rel="stylesheet" href="../user/css/icomoon.css">
+	<link rel="stylesheet" href="../user/css/style.css">
+</head>
+
+
+
+<div class="container mt-3">
+    <table id="Category" class="table  table-hover">
+      <thead class="text-primary">
+        <tr>
+          <th scope="col">SNO</th>
+          <th scope="col">PICTURE</th>
+          <th scope="col">PRODUCT NAME</th>
+          <th scope="col">PRICE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% let i=1; for(values of products) {  %>
+          <tr>
+            <th scope="row"><%= i++ %></th>
+            <td><a href="viewProductDetails?id=<%= values.orderProducts[0]._id %>"><img src="<%= values.orderProducts[0].image %>" alt="" style="width:4em ; height:4em"></a></td>
+            <td><%= values.orderProducts[0].productname %></td>
+            <td>₹<%= values.orderProducts[0].sellingprice %></td>
+           </tr>
+          <% } %>
+      </tbody>
+    </table>
+  </div>
